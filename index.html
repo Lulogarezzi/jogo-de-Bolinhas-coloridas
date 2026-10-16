@@ -12,14 +12,6 @@
     <button class="nav-btn btn-donate" onclick="alert('Chave PIX 34991135148 luciana logarezzi v s!')">Donativos ❤️</button>
 </div>
 
-<audio id="audioPlayer" controls>
-    <source src="https://anytourl.com/s/87786485920960551/mpeg" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-</audio>
-<p id="audioError" style="display:none; color:#ff9999; text-align:center;">
-    Não foi possível reproduzir o áudio. <a href="https://anytourl.com/s/87786485920960551/mpeg" target="_blank" rel="noopener noreferrer" style="color:#9cf;">Tente abrir o link diretamente</a>.
-</p>
-
 <div class="main-layout">
     <div>
         <h2 style="text-align:center; margin:5px;">Pontos: <span id="score">0</span>/1000 | Tempo: <span id="timer">02:00</span></h2>
@@ -54,12 +46,6 @@ const gameArea = document.getElementById("gameCanvasArea");
 const scoreElement = document.getElementById("score");
 const timerElement = document.getElementById("timer");
 const comboStatus = document.getElementById("comboStatus");
-const audioPlayer = document.getElementById("audioPlayer");
-const audioError = document.getElementById("audioError");
-
-audioPlayer.addEventListener("error", () => {
-    audioError.style.display = "block";
-});
 
 const COLORS = ["#FF3333", "#33FF33", "#3333FF", "#FFFF33", "#FF33FF"];
 const COLOR_NAMES = { "#FF3333": "Vermelho", "#33FF33": "Verde", "#3333FF": "Azul", "#FFFF33": "Amarelo", "#FF33FF": "Roxo" };

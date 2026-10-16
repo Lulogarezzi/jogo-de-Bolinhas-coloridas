@@ -1,1163 +1,199 @@
-<!doctype html>
-<html lang="pt-BR"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261009-04-61a833b","C":{"Abril Fatface":"YACgEZbkUVE,0","Albert Sans":"YAHO2HRfeh4,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo Black":"YACgEZulLoA,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Baloo 2":"YAHO2IcQUcM,0","Barlow Condensed":"YAFdJljEuFc,0","Barlow":"YAFdJsyuOPM,1","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Cinzel":"YACgEeV8bIQ,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Figtree":"YAHO2b-mV7A,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Fredoka":"YACgEZml080,0","Georgia":"YAGzXkO0pEM,0","Hanken Grotesk":"YAHO2VB9G0I,0","Helvetica":"YAFcf7zkXN0,0","IBM Plex Mono":"YAFdJkmvhGI,0","IBM Plex Sans":"YAFdJgT0SHI,0","Impact":"YAFcfnjI7Vk,0","Instrument Sans":"YAHO2bKyaSQ,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Italiana":"YAHO2Toik_w,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Karla":"YAHO2V2NSXM,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Libre Caslon Display":"YAHO2XhLmt0,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Noto Sans JP":"YAFdJiHXlcI,0","Noto Sans KR":"YAGsojZj-RQ,0","Nunito Sans":"YAFdtQJYB9w,1","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Outfit":"YAHO2nVlg14,0","Pacifico":"YADLjORQ1u4,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAHO2gdhi18,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Public Sans":"YAFdJj8NdaU,1","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Sarabun":"YAFdJssSnME,0","Schibsted Grotesk":"YAHO2sWydRk,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Space Mono":"YADW1-vpsoc,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/3ea5843eacd3e51f.telemetry_sdk.js" integrity="sha512-1IT905GQp6Xezy7dJYJjQl6KtI/PDxD5Vu755gJMNA+luF1QkRT8rHzF+xP7Ekem4HWP8sPFcQQAmx6FCSGaMg=="></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tetris 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --ink: #07111f;
-      --panel: rgba(10, 24, 43, .88);
-      --cyan: #2ff7ff;
-      --pink: #ff3cac;
-      --lime: #b9ff4b;
-      --muted: #9bb4ce;
-    }
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chuva de Bolinhas Coloridas</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
 
-    * { box-sizing: border-box; }
-    html { background: #050b16; scroll-behavior: smooth; }
+<div class="navbar">
+    <button class="nav-btn btn-login" onclick="alert('Login simulado!')">Login</button>
+    <button class="nav-btn btn-donate" onclick="alert('Chave PIX 34991135148 luciana logarezzi v s!')">Donativos ❤️</button>
+</div>
 
-    body {
-      width: 100%;
-      min-height: 100%;
-      margin: 0;
-      overflow-x: hidden;
-      color: #edf8ff;
-      font-family: "DM Sans", sans-serif;
-    }
-
-    .app-wrapper {
-      position: relative;
-      width: 100%;
-      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
-      isolation: isolate;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 14% 8%, rgba(47,247,255,.16), transparent 30rem),
-        radial-gradient(circle at 86% 48%, rgba(255,60,172,.13), transparent 31rem),
-        #050b16;
-    }
-
-    .app-wrapper::before {
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      pointer-events: none;
-      opacity: .32;
-      content: "";
-      background-image:
-        linear-gradient(rgba(85,174,240,.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(85,174,240,.1) 1px, transparent 1px);
-      background-size: 38px 38px;
-      mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,.8) 70%, transparent 100%);
-    }
-
-    .title-font { font-family: "Space Mono", monospace; }
-
-    .neon-panel {
-      border: 1px solid rgba(103,225,255,.24);
-      background: var(--panel);
-      box-shadow: 0 0 0 1px rgba(0,0,0,.22), 0 18px 45px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.04);
-      backdrop-filter: blur(14px);
-    }
-
-    .board-wrap {
-      position: relative;
-      width: min(76vw, 360px);
-      aspect-ratio: 1 / 2;
-      padding: 7px;
-      border-radius: 17px;
-      background: linear-gradient(135deg, rgba(47,247,255,.86), rgba(255,60,172,.76));
-      box-shadow: 0 0 32px rgba(47,247,255,.18), 0 0 54px rgba(255,60,172,.11);
-    }
-
-    #board {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: 11px;
-      background: #07111f;
-      image-rendering: pixelated;
-    }
-
-    .game-overlay {
-      position: absolute;
-      z-index: 2;
-      inset: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      border-radius: 11px;
-      background: rgba(3,10,20,.8);
-      backdrop-filter: blur(5px);
-      transition: opacity .25s ease, visibility .25s ease;
-    }
-
-    .hidden-overlay {
-      visibility: hidden;
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    .overlay-card {
-      width: 100%;
-      max-width: 265px;
-      text-align: center;
-    }
-
-    .stat-value {
-      color: #f3fbff;
-      font-family: "Space Mono", monospace;
-      font-size: clamp(1.25rem, 3vw, 1.7rem);
-      font-weight: 700;
-      text-shadow: 0 0 16px rgba(47,247,255,.34);
-    }
-
-    .action-btn, .control-btn {
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
-    }
-
-    .action-btn:hover, .control-btn:hover { filter: brightness(1.16); }
-    .action-btn:active, .control-btn:active { transform: translateY(2px) scale(.98); }
-
-    .action-btn:focus-visible, .control-btn:focus-visible {
-      outline: 3px solid #ffffff;
-      outline-offset: 3px;
-    }
-
-    .control-btn {
-      display: inline-flex;
-      min-width: 60px;
-      min-height: 54px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(47,247,255,.48);
-      border-radius: 14px;
-      color: #e9fdff;
-      background: rgba(13,35,59,.95);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 16px rgba(0,0,0,.24);
-    }
-
-    .control-btn.primary {
-      border-color: #51f8ff;
-      background: linear-gradient(135deg, #087d9a, #144f90);
-    }
-
-    .control-btn.drop {
-      border-color: rgba(185,255,75,.75);
-      color: #d6ff99;
-    }
-
-    .pulse-dot { animation: pulse 1.8s ease-in-out infinite; }
-
-    .history-line {
-      position: absolute;
-      top: 1.5rem;
-      bottom: 1.5rem;
-      left: 1.22rem;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--cyan), var(--pink), transparent);
-    }
-
-    .timeline-point {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      width: 2.5rem;
-      height: 2.5rem;
-      flex: 0 0 auto;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(47,247,255,.78);
-      border-radius: 999px;
-      color: var(--cyan);
-      background: #091727;
-      box-shadow: 0 0 18px rgba(47,247,255,.23);
-      font-family: "Space Mono", monospace;
-      font-size: .7rem;
-    }
-
-    .instruction-icon {
-      display: flex;
-      width: 2.85rem;
-      height: 2.85rem;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(47,247,255,.35);
-      border-radius: .85rem;
-      color: var(--cyan);
-      background: rgba(3,15,29,.68);
-    }
-
-    @keyframes pulse {
-      50% { opacity: .45; transform: scale(.72); }
-    }
-
-    @media (max-width: 500px) {
-      .board-wrap { width: min(84vw, 340px); }
-      .control-btn { min-width: 54px; }
-    }
-  </style>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="/_sdk/263f7f1ec427fef1.data_sdk.js" type="text/javascript" integrity="sha512-G5r5+ZpgQ1ELqZ8tI9imlWClKvYZ57SrzbGr898u8le5l2OuBwnWDOf9qbb9mCGSCmLi/3zszXyL+nX96lu7Lg=="></script>
-  <script src="/_sdk/7f51878a26dda571.editing_sdk.js" type="text/javascript" integrity="sha512-lv2tc4rONGhIWbY0ih8IjIqw943uiwvC9BM8dCj48SpTnOr728gJkoyMnfD0Yfa9KbBgBGdq6uAFyQuDfezvEg=="></script>
-  <script src="/_sdk/221ab7571fc66e1b.resizing_sdk.js" type="text/javascript" integrity="sha512-brXJ8PEVMWyvFfRXR3J+lXcBL9xcTCDHg4wYW7JDpQNdbOBkBezAQsQLUeUc2BOFREYS4N9GREjyhzX1N1VFdA=="></script>
- </head>
- <body data-template-id="__page-root" style="background: rgb(5, 11, 22);">
-  <div class="app-wrapper">
-   <header class="w-full px-4 pt-5 sm:px-7 sm:pt-7">
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3">
-     <div class="flex items-center gap-3"><span class="pulse-dot h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_15px_#2ff7ff]" aria-hidden="true"></span> <span data-template-id="year-tag" class="canva-tag title-font" style="color: rgb(189, 251, 255); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">ARCADE // 2026</span>
-     </div><button id="pause-button" type="button" class="action-btn neon-panel flex items-center gap-2 rounded-xl px-3 py-2" aria-label="Pausar ou continuar jogo"> <i data-lucide="pause" class="h-4 w-4" aria-hidden="true"></i> <span data-template-id="pause-label" class="canva-text" style="color: rgb(233, 253, 255); font-weight: 700; font-style: normal; font-size: 14px;">Pausar</span> </button>
+<div class="main-layout">
+    <div>
+        <h2 style="text-align:center; margin:5px;">Pontos: <span id="score">0</span>/1000 | Tempo: <span id="timer">02:00</span></h2>
+        <div class="combo-box" id="comboStatus">Clique em Começar!</div>
+        
+        <div id="gameCanvasArea">
+            <div id="startScreen" class="screen-overlay">
+                <span>Chuva de Bolinhas</span>
+                <span style="font-size: 14px; color: #aaa; font-weight: normal;">Faça 1.000 pontos antes do tempo acabar!</span>
+                <button class="overlay-btn" onclick="startGame()">▶️ COMEÇAR</button>
+            </div>
+            <div id="pauseScreen" class="screen-overlay" style="display: none;">
+                <span>JOGO PAUSADO</span>
+            </div>
+            <div id="gameOverScreen" class="screen-overlay" style="display: none; color: #ff3333;">
+                <span id="endMessage">GAME OVER 💀</span>
+                <span id="endSubMessage" style="font-size: 14px; color: white; font-weight: normal;">Você não atingiu os 1.000 pontos!</span>
+                <button class="overlay-btn" style="background-color: #ff9800;" onclick="restartGame()">🔄 REINICIAR</button>
+            </div>
+        </div>
     </div>
-   </header>
-   <main class="w-full px-4 pb-12 pt-5 sm:px-7">
-    <section class="mx-auto max-w-6xl">
-     <div class="mb-6 text-center">
-      <p data-template-id="eyebrow" class="canva-text mb-2" style="color: rgb(185, 255, 75); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">JOGO DE ARCADE • EDIÇÃO FUTURA</p>
-      <h1 data-template-id="game-title" class="canva-text title-font" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 32px; letter-spacing: -0.04rem;">Tetris 2026</h1>
-     </div>
-     <div class="flex flex-col items-center justify-center gap-5 lg:flex-row lg:items-start">
-      <section class="board-wrap" aria-label="Tabuleiro de jogo Tetris">
-       <canvas id="board" width="300" height="600" role="img" aria-label="Tabuleiro de blocos em queda"></canvas>
-       <div id="start-overlay" class="game-overlay">
-        <div class="overlay-card">
-         <p data-template-id="start-kicker" class="canva-text title-font mb-3" style="color: rgb(189, 251, 255); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">SISTEMA ONLINE</p>
-         <h2 data-template-id="start-heading" class="canva-text mb-3" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 24px;">Pronto para encaixar?</h2>
-         <p data-template-id="start-copy" class="canva-text mb-6" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Complete linhas, aumente o nível e conquiste o recorde.</p><button id="start-button" type="button" data-template-id="start-button" class="canva-button action-btn w-full rounded-xl px-5 py-3 shadow-[0_0_23px_rgba(47,247,255,.35)]" style="background: rgb(47, 247, 255); color: rgb(7, 17, 31); font-weight: 800; font-style: normal; font-size: 16px;">Iniciar jogo</button>
-        </div>
-       </div>
-       <div id="gameover-overlay" class="game-overlay hidden-overlay" aria-live="polite">
-        <div class="overlay-card">
-         <p data-template-id="gameover-kicker" class="canva-text title-font mb-3" style="color: rgb(255, 155, 214); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">SINAL PERDIDO</p>
-         <h2 data-template-id="gameover-heading" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 24px;">Game over</h2>
-         <p class="mb-5 text-sm text-slate-300"><span data-template-id="final-score-label" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px;">Pontuação final:</span> <strong id="final-score" class="font-bold text-lime-300">0</strong></p><button id="play-again-button" type="button" data-template-id="play-again-button" class="canva-button action-btn w-full rounded-xl px-5 py-3" style="background: rgb(255, 60, 172); color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">Jogar novamente</button>
-        </div>
-       </div>
-      </section>
-      <aside class="w-full max-w-[360px] space-y-4 lg:w-72" aria-label="Informações e controles do jogo">
-       <section class="neon-panel rounded-2xl p-4">
-        <div class="grid grid-cols-2 gap-3">
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="score-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Pontos</p><output id="score" class="stat-value" aria-live="polite">0</output>
-         </div>
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="highscore-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Recorde</p><output id="high-score" class="stat-value text-lime-300" aria-live="polite">0</output>
-         </div>
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="lines-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Linhas</p><output id="lines" class="stat-value" aria-live="polite">0</output>
-         </div>
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="level-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Nível</p><output id="level" class="stat-value text-pink-300" aria-live="polite">1</output>
-         </div>
-        </div>
-       </section>
-       <section class="neon-panel rounded-2xl p-4">
-        <p data-template-id="next-label" class="canva-text mb-2" style="color: rgb(189, 251, 255); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.1rem;">Próxima peça</p>
-        <div class="flex h-28 items-center justify-center rounded-xl border border-cyan-300/15 bg-[#06101e]">
-         <canvas id="next-piece" width="120" height="100" role="img" aria-label="Próxima peça"></canvas>
-        </div>
-       </section>
-       <section data-template-id="instructions-panel" class="canva-panel neon-panel rounded-2xl p-4" style="background: rgb(10, 24, 43);">
-        <h2 data-template-id="instructions-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 14px; letter-spacing: 0.08rem;">Comandos</h2>
-        <p data-template-id="instructions-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">← → mover · ↑ girar · ↓ acelerar · espaço queda instantânea · P pausar</p>
-       </section><button id="restart-button" type="button" data-template-id="restart-button" class="canva-button action-btn w-full rounded-xl px-4 py-3" style="background: rgb(24, 54, 82); color: rgb(233, 253, 255); font-weight: 700; font-style: normal; font-size: 14px;">Reiniciar partida</button>
-      </aside>
-     </div>
-     <nav class="mx-auto mt-5 flex max-w-[360px] flex-wrap justify-center gap-2" aria-label="Controles de toque"><button id="left-button" type="button" class="control-btn" aria-label="Mover para a esquerda"><i data-lucide="arrow-left" aria-hidden="true"></i></button> <button id="rotate-button" type="button" class="control-btn primary" aria-label="Girar peça"><i data-lucide="rotate-cw" aria-hidden="true"></i></button> <button id="right-button" type="button" class="control-btn" aria-label="Mover para a direita"><i data-lucide="arrow-right" aria-hidden="true"></i></button> <button id="down-button" type="button" class="control-btn" aria-label="Acelerar queda"><i data-lucide="arrow-down" aria-hidden="true"></i></button> <button id="drop-button" type="button" class="control-btn drop" aria-label="Queda instantânea"><i data-lucide="chevrons-down" aria-hidden="true"></i></button>
-     </nav>
-     <p id="status-message" class="mt-4 text-center text-sm text-cyan-100" role="status" aria-live="polite"></p>
-    </section>
-    <section class="mx-auto mt-16 max-w-6xl" aria-labelledby="history-title">
-     <div class="mb-6 max-w-2xl">
-      <p data-template-id="history-eyebrow" class="canva-text mb-2" style="color: rgb(185, 255, 75); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">DOS LABORATÓRIOS AO MUNDO</p>
-      <h2 data-template-id="history-title" class="canva-text title-font mb-3" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px; letter-spacing: -0.03rem;">A história do Tetris</h2>
-      <p data-template-id="history-intro" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.6;">Um quebra-cabeça de blocos nascido em Moscou que atravessou plataformas, gerações e fronteiras para se tornar um dos jogos mais reconhecidos do planeta.</p>
-     </div>
-     <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
-      <article data-template-id="history-image-panel" class="canva-card neon-panel overflow-hidden rounded-2xl" style="background: rgb(10, 24, 43);"><img data-template-id="history-image" loading="lazy" class="canva-image h-64 w-full object-cover opacity-75 sm:h-full" alt="Máquina arcade retrô iluminada por luzes neon em uma sala de jogos escura." src="https://images.pexels.com/photos/10126380/pexels-photo-10126380.jpeg">
-       <div class="border-t border-cyan-300/15 px-5 py-4">
-        <p data-template-id="history-image-caption" class="canva-text" style="color: rgb(189, 251, 255); font-weight: 600; font-style: normal; font-size: 14px; line-height: 1.5;">A lógica simples das peças em queda continua viva em cada nova geração de jogadores.</p>
-       </div>
-      </article>
-      <section data-template-id="timeline-panel" class="canva-panel neon-panel relative overflow-hidden rounded-2xl p-5 sm:p-7" style="background: rgb(10, 24, 43);">
-       <div class="history-line" aria-hidden="true"></div>
-       <ol class="space-y-6">
-        <li class="relative flex gap-4"><span class="timeline-point" aria-hidden="true">84</span>
-         <div class="pt-1">
-          <p data-template-id="timeline-1984-year" class="canva-text mb-1" style="color: rgb(47, 247, 255); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.08rem;">1984</p>
-          <h3 data-template-id="timeline-1984-title" class="canva-text mb-1" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">O primeiro encaixe</h3>
-          <p data-template-id="timeline-1984-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Em Moscou, Alexey Pajitnov cria Tetris inspirado nos pentaminós. O nome une “tetra”, referência às quatro células de cada peça, e “tênis”, seu esporte favorito.</p>
-         </div></li>
-        <li class="relative flex gap-4"><span class="timeline-point" aria-hidden="true">89</span>
-         <div class="pt-1">
-          <p data-template-id="timeline-1989-year" class="canva-text mb-1" style="color: rgb(255, 155, 214); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.08rem;">1989</p>
-          <h3 data-template-id="timeline-1989-title" class="canva-text mb-1" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Chegada internacional</h3>
-          <p data-template-id="timeline-1989-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">A distribuição internacional no fim dos anos 1980 coloca Tetris nas mãos de jogadores em diversos países e transforma o puzzle em um novo fenômeno cultural.</p>
-         </div></li>
-        <li class="relative flex gap-4"><span class="timeline-point" aria-hidden="true">90</span>
-         <div class="pt-1">
-          <p data-template-id="timeline-1990s-year" class="canva-text mb-1" style="color: rgb(185, 255, 75); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.08rem;">1990s</p>
-          <h3 data-template-id="timeline-1990s-title" class="canva-text mb-1" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Um clássico mundial</h3>
-          <p data-template-id="timeline-1990s-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Durante os anos 1990, o jogo se consolida como um ícone mundial. Sua combinação de regras imediatas e profundidade estratégica garante um legado que continua em expansão.</p>
-         </div></li>
-       </ol>
-      </section>
-     </div>
-    </section>
-    <section class="mx-auto mt-14 max-w-6xl" aria-labelledby="how-title">
-     <div class="mb-6 max-w-2xl">
-      <p data-template-id="how-eyebrow" class="canva-text mb-2" style="color: rgb(255, 155, 214); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">PROTOCOLO DO PILOTO</p>
-      <h2 data-template-id="how-title" class="canva-text title-font" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px; letter-spacing: -0.03rem;">Como jogar</h2>
-     </div>
-     <div class="grid gap-4 md:grid-cols-3">
-      <article data-template-id="how-card-1" class="canva-card neon-panel rounded-2xl p-5" style="background: rgb(10, 24, 43);">
-       <div class="instruction-icon mb-4">
-        <i data-lucide="move-horizontal" aria-hidden="true"></i>
-       </div>
-       <h3 data-template-id="how-card-1-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Posicione</h3>
-       <p data-template-id="how-card-1-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Use as setas esquerda e direita ou os botões para deslocar cada peça até a coluna ideal.</p>
-      </article>
-      <article data-template-id="how-card-2" class="canva-card neon-panel rounded-2xl p-5" style="background: rgb(10, 24, 43);">
-       <div class="instruction-icon mb-4">
-        <i data-lucide="rotate-cw" aria-hidden="true"></i>
-       </div>
-       <h3 data-template-id="how-card-2-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Gire</h3>
-       <p data-template-id="how-card-2-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Pressione a seta para cima ou o botão central para girar e encaixar as formas com precisão.</p>
-      </article>
-      <article data-template-id="how-card-3" class="canva-card neon-panel rounded-2xl p-5" style="background: rgb(10, 24, 43);">
-       <div class="instruction-icon mb-4">
-        <i data-lucide="rows-3" aria-hidden="true"></i>
-       </div>
-       <h3 data-template-id="how-card-3-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Complete linhas</h3>
-       <p data-template-id="how-card-3-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Feche linhas horizontais para removê-las, marcar pontos e acelerar o jogo. Quatro linhas de uma vez formam um Tetris.</p>
-      </article>
-     </div>
-    </section>
-   </main>
-   <footer class="w-full px-4 pb-8 text-center sm:px-7">
-    <p data-template-id="footer-copy" class="canva-text" style="color: rgb(120, 148, 177); font-weight: 400; font-style: normal; font-size: 13px;">Tetris 2026 • blocos, estratégia e reflexos em modo neon.</p>
-   </footer>
-  </div>
-  <script>
-    (() => {
-      const COLS = 10;
-      const ROWS = 20;
-      const BLOCK = 30;
-      const COLORS = ["#2ff7ff", "#326bff", "#ff9e36", "#fff14b", "#b95cff", "#ff3cac", "#b9ff4b"];
-      const SHAPES = [
-        [[1,1,1,1]],
-        [[1,0,0],[1,1,1]],
-        [[0,0,1],[1,1,1]],
-        [[1,1],[1,1]],
-        [[0,1,1],[1,1,0]],
-        [[0,1,0],[1,1,1]],
-        [[1,1,0],[0,1,1]]
-      ];
 
-      const boardCanvas = document.getElementById("board");
-      const ctx = boardCanvas.getContext("2d");
-      const nextCanvas = document.getElementById("next-piece");
-      const nextCtx = nextCanvas.getContext("2d");
-      const output = (id) => document.getElementById(id);
+    <div class="side-panel">
+        <button class="control-btn btn-start" id="sideStartBtn" onclick="restartGame()">▶️ Começar</button>
+        <button class="control-btn btn-restart" onclick="restartGame()">🔄 Reiniciar</button>
+        <button class="control-btn btn-pause" id="pauseBtn" onclick="togglePause()" style="display:none;">⏸️ Pausar</button>
+    </div>
+</div>
 
-      let board;
-      let current;
-      let next;
-      let score;
-      let lines;
-      let level;
-      let highScore;
-      let running = false;
-      let paused = false;
-      let lastTime = 0;
-      let dropCounter = 0;
-      let animationId;
+<script>
+const gameArea = document.getElementById("gameCanvasArea");
+const scoreElement = document.getElementById("score");
+const timerElement = document.getElementById("timer");
+const comboStatus = document.getElementById("comboStatus");
 
-      function emptyBoard() {
-        return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
-      }
+const COLORS = ["#FF3333", "#33FF33", "#3333FF", "#FFFF33", "#FF33FF"];
+const COLOR_NAMES = { "#FF3333": "Vermelho", "#33FF33": "Verde", "#3333FF": "Azul", "#FFFF33": "Amarelo", "#FF33FF": "Roxo" };
 
-      function randomPiece() {
-        const type = Math.floor(Math.random() * SHAPES.length);
-        return {
-          shape: SHAPES[type].map((row) => [...row]),
-          color: COLORS[type],
-          x: 0,
-          y: 0
-        };
-      }
+let score = 0;
+let timeLeft = 120; // 2 minutos em segundos
+let clickedColors = [];
+let isPlaying = false;
+let isPaused = false;
+let spawnInterval = null;
+let countdownInterval = null;
 
-      function resetPiece(piece) {
-        piece.x = Math.floor((COLS - piece.shape[0].length) / 2);
-        piece.y = 0;
-        return piece;
-      }
+function formatTime(seconds) {
+    let mins = Math.floor(seconds / 60);
+    let secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
 
-      function collides(piece, offsetX = 0, offsetY = 0, testShape = piece.shape) {
-        return testShape.some((row, y) => row.some((cell, x) => {
-          if (!cell) return false;
-          const nextX = piece.x + x + offsetX;
-          const nextY = piece.y + y + offsetY;
-          return nextX < 0 || nextX >= COLS || nextY >= ROWS || (nextY >= 0 && board[nextY][nextX]);
-        }));
-      }
+function startGame() {
+    isPlaying = true;
+    isPaused = false;
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("gameOverScreen").style.display = "none";
+    document.getElementById("pauseBtn").style.display = "block";
+    document.getElementById("sideStartBtn").style.display = "none";
+    comboStatus.innerText = "Combine 3 da mesma cor!";
+    
+    if(spawnInterval) clearInterval(spawnInterval);
+    if(countdownInterval) clearInterval(countdownInterval);
+    
+    gameArea.classList.remove("paused");
+    document.getElementById("pauseBtn").innerText = "⏸️ Pausar";
+    spawnInterval = setInterval(createBall, 600);
+    countdownInterval = setInterval(updateTimer, 1000);
+}
 
-      function drawCell(context, x, y, color, size = BLOCK) {
-        const px = x * size;
-        const py = y * size;
-
-        context.fillStyle = color;
-        context.shadowColor = color;
-        context.shadowBlur = size * .35;
-        context.fillRect(px + 2, py + 2, size - 4, size - 4);
-        context.shadowBlur = 0;
-        context.fillStyle = "rgba(255,255,255,.28)";
-        context.fillRect(px + 4, py + 4, size - 8, 3);
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, boardCanvas.width, boardCanvas.height);
-        ctx.fillStyle = "#07111f";
-        ctx.fillRect(0, 0, boardCanvas.width, boardCanvas.height);
-
-        ctx.strokeStyle = "rgba(119,200,255,.11)";
-        ctx.lineWidth = 1;
-
-        for (let x = 0; x <= COLS; x++) {
-          ctx.beginPath();
-          ctx.moveTo(x * BLOCK, 0);
-          ctx.lineTo(x * BLOCK, ROWS * BLOCK);
-          ctx.stroke();
-        }
-
-        for (let y = 0; y <= ROWS; y++) {
-          ctx.beginPath();
-          ctx.moveTo(0, y * BLOCK);
-          ctx.lineTo(COLS * BLOCK, y * BLOCK);
-          ctx.stroke();
-        }
-
-        board.forEach((row, y) => row.forEach((cell, x) => {
-          if (cell) drawCell(ctx, x, y, cell);
-        }));
-
-        if (current) {
-          current.shape.forEach((row, y) => row.forEach((cell, x) => {
-            if (cell) drawCell(ctx, current.x + x, current.y + y, current.color);
-          }));
-        }
-      }
-
-      function drawNext() {
-        nextCtx.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
-        if (!next) return;
-
-        const size = 20;
-        const width = next.shape[0].length * size;
-        const height = next.shape.length * size;
-
-        next.shape.forEach((row, y) => row.forEach((cell, x) => {
-          if (!cell) return;
-          const px = (nextCanvas.width - width) / 2 + x * size;
-          const py = (nextCanvas.height - height) / 2 + y * size;
-
-          nextCtx.fillStyle = next.color;
-          nextCtx.shadowColor = next.color;
-          nextCtx.shadowBlur = 10;
-          nextCtx.fillRect(px + 2, py + 2, size - 4, size - 4);
-          nextCtx.shadowBlur = 0;
-        }));
-      }
-
-      function updateStats() {
-        output("score").textContent = score;
-        output("lines").textContent = lines;
-        output("level").textContent = level;
-        output("high-score").textContent = highScore;
-      }
-
-      function setStatus(text) {
-        output("status-message").textContent = text;
-      }
-
-      function merge() {
-        current.shape.forEach((row, y) => row.forEach((cell, x) => {
-          if (cell && current.y + y >= 0) {
-            board[current.y + y][current.x + x] = current.color;
-          }
-        }));
-      }
-
-      function clearLines() {
-        let cleared = 0;
-
-        for (let y = ROWS - 1; y >= 0; y--) {
-          if (board[y].every(Boolean)) {
-            board.splice(y, 1);
-            board.unshift(Array(COLS).fill(null));
-            cleared++;
-            y++;
-          }
-        }
-
-        if (cleared) {
-          const points = [0, 100, 300, 500, 800][cleared] * level;
-          score += points;
-          lines += cleared;
-          level = Math.floor(lines / 10) + 1;
-          setStatus(cleared === 4 ? `TETRIS! +${points}` : `${cleared} linha(s) eliminada(s)! +${points}`);
-        }
-      }
-
-      function spawn() {
-        current = resetPiece(next);
-        next = randomPiece();
-        drawNext();
-
-        if (collides(current)) gameOver();
-      }
-
-      function updateHighScore() {
-        if (score > highScore) {
-          highScore = score;
-          localStorage.setItem("tetris2026-high-score", String(highScore));
-        }
-      }
-
-      function lockPiece() {
-        merge();
-        clearLines();
-        spawn();
-        updateHighScore();
-        updateStats();
-      }
-
-      function move(dx) {
-        if (!running || paused) return;
-        if (!collides(current, dx, 0)) {
-          current.x += dx;
-          draw();
-        }
-      }
-
-      function softDrop() {
-        if (!running || paused) return;
-
-        if (!collides(current, 0, 1)) {
-          current.y++;
-          score++;
-          updateStats();
+function updateTimer() {
+    if (isPaused || !isPlaying) return;
+    
+    timeLeft--;
+    timerElement.innerText = formatTime(timeLeft);
+    
+    if (timeLeft <= 0) {
+        if (score >= 1000) {
+            triggerEndGame(true); // Vitória!
         } else {
-          lockPiece();
+            triggerEndGame(false); // Game Over!
         }
+    }
+}
 
-        dropCounter = 0;
-        draw();
-      }
+function createBall() {
+    if (!isPlaying || isPaused) return;
 
-      function hardDrop() {
-        if (!running || paused) return;
+    const ball = document.createElement("div");
+    ball.classList.add("ball");
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    ball.style.backgroundColor = color;
 
-        let distance = 0;
-        while (!collides(current, 0, 1)) {
-          current.y++;
-          distance++;
+    gameArea.appendChild(ball);
+    const maxLeft = Math.max(0, gameArea.clientWidth - ball.offsetWidth);
+    ball.style.left = Math.random() * maxLeft + "px";
+
+    ball.onclick = function(e) {
+        e.stopPropagation();
+        if (!isPlaying || isPaused) return;
+        ball.remove();
+        processCombo(color);
+    };
+    ball.addEventListener("animationend", () => ball.remove(), { once: true });
+}
+
+function processCombo(color) {
+    clickedColors.push(color);
+    const matchingCount = clickedColors.filter(clickedColor => clickedColor === color).length;
+
+    if (matchingCount >= 3) {
+        let removed = 0;
+        clickedColors = clickedColors.filter(clickedColor => {
+            if (clickedColor === color && removed < 3) {
+                removed++;
+                return false;
+            }
+            return true;
+        });
+        score += 30;
+        scoreElement.innerText = score;
+        comboStatus.innerText = `Estourou ${COLOR_NAMES[color]}! +30 pontos!`;
+
+        if (score >= 1000) {
+            triggerEndGame(true);
         }
-
-        score += distance * 2;
-        lockPiece();
-        draw();
-      }
-
-      function rotate() {
-        if (!running || paused) return;
-
-        const rotated = current.shape[0].map((_, index) => current.shape.map((row) => row[index]).reverse());
-
-        if (!collides(current, 0, 0, rotated)) {
-          current.shape = rotated;
-        } else if (!collides(current, -1, 0, rotated)) {
-          current.x--;
-          current.shape = rotated;
-        } else if (!collides(current, 1, 0, rotated)) {
-          current.x++;
-          current.shape = rotated;
-        }
-
-        draw();
-      }
-
-      function setPauseIcon(iconName) {
-        const icon = document.querySelector("#pause-button svg");
-        if (icon) {
-          icon.outerHTML = `<i data-lucide="${iconName}" class="h-4 w-4" aria-hidden="true"></i>`;
-          lucide.createIcons();
-        }
-      }
-
-      function gameOver() {
-        running = false;
-        cancelAnimationFrame(animationId);
-        updateHighScore();
-        updateStats();
-        output("final-score").textContent = score;
-        output("gameover-overlay").classList.remove("hidden-overlay");
-        setPauseIcon("pause");
-        setStatus(`Fim de jogo. Seu placar foi ${score}.`);
-      }
-
-      function startGame() {
-        cancelAnimationFrame(animationId);
-
-        board = emptyBoard();
-        score = 0;
-        lines = 0;
-        level = 1;
-        current = resetPiece(randomPiece());
-        next = randomPiece();
-        running = true;
-        paused = false;
-        lastTime = 0;
-        dropCounter = 0;
-
-        output("start-overlay").classList.add("hidden-overlay");
-        output("gameover-overlay").classList.add("hidden-overlay");
-        setPauseIcon("pause");
-        setStatus("Partida iniciada. Boa sorte!");
-        updateStats();
-        drawNext();
-        draw();
-
-        animationId = requestAnimationFrame(gameLoop);
-      }
-
-      function togglePause() {
-        if (!running) return;
-
-        paused = !paused;
-        setPauseIcon(paused ? "play" : "pause");
-        setStatus(paused ? "Jogo pausado." : "Jogo retomado.");
-      }
-
-      function gameLoop(time = 0) {
-        if (!running) return;
-
-        const delta = time - lastTime;
-        lastTime = time;
-
-        if (!paused) {
-          dropCounter += delta;
-          const interval = Math.max(100, 900 - (level - 1) * 75);
-
-          if (dropCounter > interval) softDrop();
-          draw();
-        }
-
-        animationId = requestAnimationFrame(gameLoop);
-      }
-
-      highScore = Number(localStorage.getItem("tetris2026-high-score") || 0);
-      board = emptyBoard();
-      current = resetPiece(randomPiece());
-      next = randomPiece();
-
-      updateStats();
-      draw();
-      drawNext();
-
-      output("start-button").addEventListener("click", startGame);
-      output("play-again-button").addEventListener("click", startGame);
-      output("restart-button").addEventListener("click", startGame);
-      output("pause-button").addEventListener("click", togglePause);
-      output("left-button").addEventListener("click", () => move(-1));
-      output("right-button").addEventListener("click", () => move(1));
-      output("rotate-button").addEventListener("click", rotate);
-      output("down-button").addEventListener("click", softDrop);
-      output("drop-button").addEventListener("click", hardDrop);
-
-      document.addEventListener("keydown", (event) => {
-        const keys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", " ", "p", "P"];
-        if (keys.includes(event.key)) event.preventDefault();
-
-        if (event.key === "ArrowLeft") move(-1);
-        else if (event.key === "ArrowRight") move(1);
-        else if (event.key === "ArrowUp") rotate();
-        else if (event.key === "ArrowDown") softDrop();
-        else if (event.key === " ") {
-          if (!running) startGame();
-          else hardDrop();
-        } else if (event.key.toLowerCase() === "p") {
-          togglePause();
-        }
-      });
-
-      lucide.createIcons();
-    })();
-  </script>
- 
-</body></html><!doctype html>
-<html lang="pt-BR"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261009-04-61a833b","C":{"Abril Fatface":"YACgEZbkUVE,0","Albert Sans":"YAHO2HRfeh4,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo Black":"YACgEZulLoA,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Baloo 2":"YAHO2IcQUcM,0","Barlow Condensed":"YAFdJljEuFc,0","Barlow":"YAFdJsyuOPM,1","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Cinzel":"YACgEeV8bIQ,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Figtree":"YAHO2b-mV7A,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Fredoka":"YACgEZml080,0","Georgia":"YAGzXkO0pEM,0","Hanken Grotesk":"YAHO2VB9G0I,0","Helvetica":"YAFcf7zkXN0,0","IBM Plex Mono":"YAFdJkmvhGI,0","IBM Plex Sans":"YAFdJgT0SHI,0","Impact":"YAFcfnjI7Vk,0","Instrument Sans":"YAHO2bKyaSQ,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Italiana":"YAHO2Toik_w,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Karla":"YAHO2V2NSXM,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Libre Caslon Display":"YAHO2XhLmt0,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Noto Sans JP":"YAFdJiHXlcI,0","Noto Sans KR":"YAGsojZj-RQ,0","Nunito Sans":"YAFdtQJYB9w,1","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Outfit":"YAHO2nVlg14,0","Pacifico":"YADLjORQ1u4,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAHO2gdhi18,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Public Sans":"YAFdJj8NdaU,1","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Sarabun":"YAFdJssSnME,0","Schibsted Grotesk":"YAHO2sWydRk,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Space Mono":"YADW1-vpsoc,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/3ea5843eacd3e51f.telemetry_sdk.js" integrity="sha512-1IT905GQp6Xezy7dJYJjQl6KtI/PDxD5Vu755gJMNA+luF1QkRT8rHzF+xP7Ekem4HWP8sPFcQQAmx6FCSGaMg=="></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tetris 2026</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --ink: #07111f;
-      --panel: rgba(10, 24, 43, .88);
-      --cyan: #2ff7ff;
-      --pink: #ff3cac;
-      --lime: #b9ff4b;
-      --muted: #9bb4ce;
+        return;
     }
 
-    * { box-sizing: border-box; }
-    html { background: #050b16; scroll-behavior: smooth; }
+    comboStatus.innerText = `Combo ${COLOR_NAMES[color]}: ${matchingCount}/3`;
+}
 
-    body {
-      width: 100%;
-      min-height: 100%;
-      margin: 0;
-      overflow-x: hidden;
-      color: #edf8ff;
-      font-family: "DM Sans", sans-serif;
+function togglePause() {
+    isPaused = !isPaused;
+    document.getElementById("pauseScreen").style.display = isPaused ? "flex" : "none";
+    document.getElementById("pauseBtn").innerText = isPaused ? "▶️ Continuar" : "⏸️ Pausar";
+    
+    gameArea.classList.toggle("paused", isPaused);
+}
+
+function triggerEndGame(victory) {
+    if (!isPlaying) return;
+    isPlaying = false;
+    isPaused = false;
+    gameArea.classList.remove("paused");
+    clearInterval(spawnInterval);
+    clearInterval(countdownInterval);
+    
+    const overlay = document.getElementById("gameOverScreen");
+    const msg = document.getElementById("endMessage");
+    const subMsg = document.getElementById("endSubMessage");
+    
+    if (victory) {
+        msg.innerText = "VITÓRIA! 🎉";
+        msg.style.color = "#00ff6c";
+        subMsg.innerText = `Parabéns! Você alcançou ${score} pontos!`;
+    } else {
+        msg.innerText = "GAME OVER 💀";
+        msg.style.color = "#ff3333";
+        subMsg.innerText = "O tempo acabou e você não atingiu 1.000 pontos.";
     }
+    
+    overlay.style.display = "flex";
+    document.getElementById("pauseBtn").style.display = "none";
+    document.getElementById("sideStartBtn").style.display = "block";
+    document.querySelectorAll('.ball').forEach(b => b.remove());
+}
 
-    .app-wrapper {
-      position: relative;
-      width: 100%;
-      min-height: calc(100 * min(var(--vh, 1vh), 1vh));
-      isolation: isolate;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 14% 8%, rgba(47,247,255,.16), transparent 30rem),
-        radial-gradient(circle at 86% 48%, rgba(255,60,172,.13), transparent 31rem),
-        #050b16;
-    }
+function restartGame() {
+    score = 0;
+    timeLeft = 120;
+    clickedColors = [];
+    scoreElement.innerText = "0";
+    timerElement.innerText = "02:00";
+    document.querySelectorAll('.ball').forEach(b => b.remove());
+    document.getElementById("pauseScreen").style.display = "none";
+    document.getElementById("gameOverScreen").style.display = "none";
+    document.getElementById("pauseBtn").innerText = "⏸️ Pausar";
+    startGame();
+}
+</script>
 
-    .app-wrapper::before {
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      pointer-events: none;
-      opacity: .32;
-      content: "";
-      background-image:
-        linear-gradient(rgba(85,174,240,.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(85,174,240,.1) 1px, transparent 1px);
-      background-size: 38px 38px;
-      mask-image: linear-gradient(to bottom, black 0%, rgba(0,0,0,.8) 70%, transparent 100%);
-    }
-
-    .title-font { font-family: "Space Mono", monospace; }
-
-    .neon-panel {
-      border: 1px solid rgba(103,225,255,.24);
-      background: var(--panel);
-      box-shadow: 0 0 0 1px rgba(0,0,0,.22), 0 18px 45px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.04);
-      backdrop-filter: blur(14px);
-    }
-
-    .board-wrap {
-      position: relative;
-      width: min(76vw, 360px);
-      aspect-ratio: 1 / 2;
-      padding: 7px;
-      border-radius: 17px;
-      background: linear-gradient(135deg, rgba(47,247,255,.86), rgba(255,60,172,.76));
-      box-shadow: 0 0 32px rgba(47,247,255,.18), 0 0 54px rgba(255,60,172,.11);
-    }
-
-    #board {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border-radius: 11px;
-      background: #07111f;
-      image-rendering: pixelated;
-    }
-
-    .game-overlay {
-      position: absolute;
-      z-index: 2;
-      inset: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      border-radius: 11px;
-      background: rgba(3,10,20,.8);
-      backdrop-filter: blur(5px);
-      transition: opacity .25s ease, visibility .25s ease;
-    }
-
-    .hidden-overlay {
-      visibility: hidden;
-      pointer-events: none;
-      opacity: 0;
-    }
-
-    .overlay-card {
-      width: 100%;
-      max-width: 265px;
-      text-align: center;
-    }
-
-    .stat-value {
-      color: #f3fbff;
-      font-family: "Space Mono", monospace;
-      font-size: clamp(1.25rem, 3vw, 1.7rem);
-      font-weight: 700;
-      text-shadow: 0 0 16px rgba(47,247,255,.34);
-    }
-
-    .action-btn, .control-btn {
-      -webkit-tap-highlight-color: transparent;
-      transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
-    }
-
-    .action-btn:hover, .control-btn:hover { filter: brightness(1.16); }
-    .action-btn:active, .control-btn:active { transform: translateY(2px) scale(.98); }
-
-    .action-btn:focus-visible, .control-btn:focus-visible {
-      outline: 3px solid #ffffff;
-      outline-offset: 3px;
-    }
-
-    .control-btn {
-      display: inline-flex;
-      min-width: 60px;
-      min-height: 54px;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(47,247,255,.48);
-      border-radius: 14px;
-      color: #e9fdff;
-      background: rgba(13,35,59,.95);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 16px rgba(0,0,0,.24);
-    }
-
-    .control-btn.primary {
-      border-color: #51f8ff;
-      background: linear-gradient(135deg, #087d9a, #144f90);
-    }
-
-    .control-btn.drop {
-      border-color: rgba(185,255,75,.75);
-      color: #d6ff99;
-    }
-
-    .pulse-dot { animation: pulse 1.8s ease-in-out infinite; }
-
-    .history-line {
-      position: absolute;
-      top: 1.5rem;
-      bottom: 1.5rem;
-      left: 1.22rem;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--cyan), var(--pink), transparent);
-    }
-
-    .timeline-point {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      width: 2.5rem;
-      height: 2.5rem;
-      flex: 0 0 auto;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(47,247,255,.78);
-      border-radius: 999px;
-      color: var(--cyan);
-      background: #091727;
-      box-shadow: 0 0 18px rgba(47,247,255,.23);
-      font-family: "Space Mono", monospace;
-      font-size: .7rem;
-    }
-
-    .instruction-icon {
-      display: flex;
-      width: 2.85rem;
-      height: 2.85rem;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(47,247,255,.35);
-      border-radius: .85rem;
-      color: var(--cyan);
-      background: rgba(3,15,29,.68);
-    }
-
-    @keyframes pulse {
-      50% { opacity: .45; transform: scale(.72); }
-    }
-
-    @media (max-width: 500px) {
-      .board-wrap { width: min(84vw, 340px); }
-      .control-btn { min-width: 54px; }
-    }
-  </style>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="/_sdk/263f7f1ec427fef1.data_sdk.js" type="text/javascript" integrity="sha512-G5r5+ZpgQ1ELqZ8tI9imlWClKvYZ57SrzbGr898u8le5l2OuBwnWDOf9qbb9mCGSCmLi/3zszXyL+nX96lu7Lg=="></script>
-  <script src="/_sdk/7f51878a26dda571.editing_sdk.js" type="text/javascript" integrity="sha512-lv2tc4rONGhIWbY0ih8IjIqw943uiwvC9BM8dCj48SpTnOr728gJkoyMnfD0Yfa9KbBgBGdq6uAFyQuDfezvEg=="></script>
-  <script src="/_sdk/221ab7571fc66e1b.resizing_sdk.js" type="text/javascript" integrity="sha512-brXJ8PEVMWyvFfRXR3J+lXcBL9xcTCDHg4wYW7JDpQNdbOBkBezAQsQLUeUc2BOFREYS4N9GREjyhzX1N1VFdA=="></script>
- </head>
- <body data-template-id="__page-root" style="background: rgb(5, 11, 22);">
-  <div class="app-wrapper">
-   <header class="w-full px-4 pt-5 sm:px-7 sm:pt-7">
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3">
-     <div class="flex items-center gap-3"><span class="pulse-dot h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_15px_#2ff7ff]" aria-hidden="true"></span> <span data-template-id="year-tag" class="canva-tag title-font" style="color: rgb(189, 251, 255); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">ARCADE // 2026</span>
-     </div><button id="pause-button" type="button" class="action-btn neon-panel flex items-center gap-2 rounded-xl px-3 py-2" aria-label="Pausar ou continuar jogo"> <i data-lucide="pause" class="h-4 w-4" aria-hidden="true"></i> <span data-template-id="pause-label" class="canva-text" style="color: rgb(233, 253, 255); font-weight: 700; font-style: normal; font-size: 14px;">Pausar</span> </button>
-    </div>
-   </header>
-   <main class="w-full px-4 pb-12 pt-5 sm:px-7">
-    <section class="mx-auto max-w-6xl">
-     <div class="mb-6 text-center">
-      <p data-template-id="eyebrow" class="canva-text mb-2" style="color: rgb(185, 255, 75); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">JOGO DE ARCADE • EDIÇÃO FUTURA</p>
-      <h1 data-template-id="game-title" class="canva-text title-font" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 32px; letter-spacing: -0.04rem;">Tetris 2026</h1>
-     </div>
-     <div class="flex flex-col items-center justify-center gap-5 lg:flex-row lg:items-start">
-      <section class="board-wrap" aria-label="Tabuleiro de jogo Tetris">
-       <canvas id="board" width="300" height="600" role="img" aria-label="Tabuleiro de blocos em queda"></canvas>
-       <div id="start-overlay" class="game-overlay">
-        <div class="overlay-card">
-         <p data-template-id="start-kicker" class="canva-text title-font mb-3" style="color: rgb(189, 251, 255); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">SISTEMA ONLINE</p>
-         <h2 data-template-id="start-heading" class="canva-text mb-3" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 24px;">Pronto para encaixar?</h2>
-         <p data-template-id="start-copy" class="canva-text mb-6" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">Complete linhas, aumente o nível e conquiste o recorde.</p><button id="start-button" type="button" data-template-id="start-button" class="canva-button action-btn w-full rounded-xl px-5 py-3 shadow-[0_0_23px_rgba(47,247,255,.35)]" style="background: rgb(47, 247, 255); color: rgb(7, 17, 31); font-weight: 800; font-style: normal; font-size: 16px;">Iniciar jogo</button>
-        </div>
-       </div>
-       <div id="gameover-overlay" class="game-overlay hidden-overlay" aria-live="polite">
-        <div class="overlay-card">
-         <p data-template-id="gameover-kicker" class="canva-text title-font mb-3" style="color: rgb(255, 155, 214); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">SINAL PERDIDO</p>
-         <h2 data-template-id="gameover-heading" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 24px;">Game over</h2>
-         <p class="mb-5 text-sm text-slate-300"><span data-template-id="final-score-label" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px;">Pontuação final:</span> <strong id="final-score" class="font-bold text-lime-300">0</strong></p><button id="play-again-button" type="button" data-template-id="play-again-button" class="canva-button action-btn w-full rounded-xl px-5 py-3" style="background: rgb(255, 60, 172); color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 16px;">Jogar novamente</button>
-        </div>
-       </div>
-      </section>
-      <aside class="w-full max-w-[360px] space-y-4 lg:w-72" aria-label="Informações e controles do jogo">
-       <section class="neon-panel rounded-2xl p-4">
-        <div class="grid grid-cols-2 gap-3">
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="score-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Pontos</p><output id="score" class="stat-value" aria-live="polite">0</output>
-         </div>
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="highscore-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Recorde</p><output id="high-score" class="stat-value text-lime-300" aria-live="polite">0</output>
-         </div>
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="lines-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Linhas</p><output id="lines" class="stat-value" aria-live="polite">0</output>
-         </div>
-         <div class="rounded-xl border border-cyan-300/15 bg-slate-950/35 p-3">
-          <p data-template-id="level-label" class="canva-text mb-1" style="color: rgb(155, 180, 206); font-weight: 700; font-style: normal; font-size: 12px;">Nível</p><output id="level" class="stat-value text-pink-300" aria-live="polite">1</output>
-         </div>
-        </div>
-       </section>
-       <section class="neon-panel rounded-2xl p-4">
-        <p data-template-id="next-label" class="canva-text mb-2" style="color: rgb(189, 251, 255); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.1rem;">Próxima peça</p>
-        <div class="flex h-28 items-center justify-center rounded-xl border border-cyan-300/15 bg-[#06101e]">
-         <canvas id="next-piece" width="120" height="100" role="img" aria-label="Próxima peça"></canvas>
-        </div>
-       </section>
-       <section data-template-id="instructions-panel" class="canva-panel neon-panel rounded-2xl p-4" style="background: rgb(10, 24, 43);">
-        <h2 data-template-id="instructions-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 14px; letter-spacing: 0.08rem;">Comandos</h2>
-        <p data-template-id="instructions-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.5;">← → mover · ↑ girar · ↓ acelerar · espaço queda instantânea · P pausar</p>
-       </section><button id="restart-button" type="button" data-template-id="restart-button" class="canva-button action-btn w-full rounded-xl px-4 py-3" style="background: rgb(24, 54, 82); color: rgb(233, 253, 255); font-weight: 700; font-style: normal; font-size: 14px;">Reiniciar partida</button>
-      </aside>
-     </div>
-     <nav class="mx-auto mt-5 flex max-w-[360px] flex-wrap justify-center gap-2" aria-label="Controles de toque"><button id="left-button" type="button" class="control-btn" aria-label="Mover para a esquerda"><i data-lucide="arrow-left" aria-hidden="true"></i></button> <button id="rotate-button" type="button" class="control-btn primary" aria-label="Girar peça"><i data-lucide="rotate-cw" aria-hidden="true"></i></button> <button id="right-button" type="button" class="control-btn" aria-label="Mover para a direita"><i data-lucide="arrow-right" aria-hidden="true"></i></button> <button id="down-button" type="button" class="control-btn" aria-label="Acelerar queda"><i data-lucide="arrow-down" aria-hidden="true"></i></button> <button id="drop-button" type="button" class="control-btn drop" aria-label="Queda instantânea"><i data-lucide="chevrons-down" aria-hidden="true"></i></button>
-     </nav>
-     <p id="status-message" class="mt-4 text-center text-sm text-cyan-100" role="status" aria-live="polite"></p>
-    </section>
-    <section class="mx-auto mt-16 max-w-6xl" aria-labelledby="history-title">
-     <div class="mb-6 max-w-2xl">
-      <p data-template-id="history-eyebrow" class="canva-text mb-2" style="color: rgb(185, 255, 75); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">DOS LABORATÓRIOS AO MUNDO</p>
-      <h2 data-template-id="history-title" class="canva-text title-font mb-3" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px; letter-spacing: -0.03rem;">A história do Tetris</h2>
-      <p data-template-id="history-intro" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 16px; line-height: 1.6;">Um quebra-cabeça de blocos nascido em Moscou que atravessou plataformas, gerações e fronteiras para se tornar um dos jogos mais reconhecidos do planeta.</p>
-     </div>
-     <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
-      <article data-template-id="history-image-panel" class="canva-card neon-panel overflow-hidden rounded-2xl" style="background: rgb(10, 24, 43);"><img data-template-id="history-image" loading="lazy" class="canva-image h-64 w-full object-cover opacity-75 sm:h-full" alt="Máquina arcade retrô iluminada por luzes neon em uma sala de jogos escura." src="https://images.pexels.com/photos/10126380/pexels-photo-10126380.jpeg">
-       <div class="border-t border-cyan-300/15 px-5 py-4">
-        <p data-template-id="history-image-caption" class="canva-text" style="color: rgb(189, 251, 255); font-weight: 600; font-style: normal; font-size: 14px; line-height: 1.5;">A lógica simples das peças em queda continua viva em cada nova geração de jogadores.</p>
-       </div>
-      </article>
-      <section data-template-id="timeline-panel" class="canva-panel neon-panel relative overflow-hidden rounded-2xl p-5 sm:p-7" style="background: rgb(10, 24, 43);">
-       <div class="history-line" aria-hidden="true"></div>
-       <ol class="space-y-6">
-        <li class="relative flex gap-4"><span class="timeline-point" aria-hidden="true">84</span>
-         <div class="pt-1">
-          <p data-template-id="timeline-1984-year" class="canva-text mb-1" style="color: rgb(47, 247, 255); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.08rem;">1984</p>
-          <h3 data-template-id="timeline-1984-title" class="canva-text mb-1" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">O primeiro encaixe</h3>
-          <p data-template-id="timeline-1984-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Em Moscou, Alexey Pajitnov cria Tetris inspirado nos pentaminós. O nome une “tetra”, referência às quatro células de cada peça, e “tênis”, seu esporte favorito.</p>
-         </div></li>
-        <li class="relative flex gap-4"><span class="timeline-point" aria-hidden="true">89</span>
-         <div class="pt-1">
-          <p data-template-id="timeline-1989-year" class="canva-text mb-1" style="color: rgb(255, 155, 214); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.08rem;">1989</p>
-          <h3 data-template-id="timeline-1989-title" class="canva-text mb-1" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Chegada internacional</h3>
-          <p data-template-id="timeline-1989-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">A distribuição internacional no fim dos anos 1980 coloca Tetris nas mãos de jogadores em diversos países e transforma o puzzle em um novo fenômeno cultural.</p>
-         </div></li>
-        <li class="relative flex gap-4"><span class="timeline-point" aria-hidden="true">90</span>
-         <div class="pt-1">
-          <p data-template-id="timeline-1990s-year" class="canva-text mb-1" style="color: rgb(185, 255, 75); font-weight: 700; font-style: normal; font-size: 13px; letter-spacing: 0.08rem;">1990s</p>
-          <h3 data-template-id="timeline-1990s-title" class="canva-text mb-1" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Um clássico mundial</h3>
-          <p data-template-id="timeline-1990s-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Durante os anos 1990, o jogo se consolida como um ícone mundial. Sua combinação de regras imediatas e profundidade estratégica garante um legado que continua em expansão.</p>
-         </div></li>
-       </ol>
-      </section>
-     </div>
-    </section>
-    <section class="mx-auto mt-14 max-w-6xl" aria-labelledby="how-title">
-     <div class="mb-6 max-w-2xl">
-      <p data-template-id="how-eyebrow" class="canva-text mb-2" style="color: rgb(255, 155, 214); font-weight: 700; font-style: normal; font-size: 12px; letter-spacing: 0.12rem;">PROTOCOLO DO PILOTO</p>
-      <h2 data-template-id="how-title" class="canva-text title-font" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 28px; letter-spacing: -0.03rem;">Como jogar</h2>
-     </div>
-     <div class="grid gap-4 md:grid-cols-3">
-      <article data-template-id="how-card-1" class="canva-card neon-panel rounded-2xl p-5" style="background: rgb(10, 24, 43);">
-       <div class="instruction-icon mb-4">
-        <i data-lucide="move-horizontal" aria-hidden="true"></i>
-       </div>
-       <h3 data-template-id="how-card-1-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Posicione</h3>
-       <p data-template-id="how-card-1-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Use as setas esquerda e direita ou os botões para deslocar cada peça até a coluna ideal.</p>
-      </article>
-      <article data-template-id="how-card-2" class="canva-card neon-panel rounded-2xl p-5" style="background: rgb(10, 24, 43);">
-       <div class="instruction-icon mb-4">
-        <i data-lucide="rotate-cw" aria-hidden="true"></i>
-       </div>
-       <h3 data-template-id="how-card-2-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Gire</h3>
-       <p data-template-id="how-card-2-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Pressione a seta para cima ou o botão central para girar e encaixar as formas com precisão.</p>
-      </article>
-      <article data-template-id="how-card-3" class="canva-card neon-panel rounded-2xl p-5" style="background: rgb(10, 24, 43);">
-       <div class="instruction-icon mb-4">
-        <i data-lucide="rows-3" aria-hidden="true"></i>
-       </div>
-       <h3 data-template-id="how-card-3-title" class="canva-text mb-2" style="color: rgb(255, 255, 255); font-weight: 800; font-style: normal; font-size: 18px;">Complete linhas</h3>
-       <p data-template-id="how-card-3-copy" class="canva-text" style="color: rgb(197, 213, 232); font-weight: 400; font-style: normal; font-size: 14px; line-height: 1.55;">Feche linhas horizontais para removê-las, marcar pontos e acelerar o jogo. Quatro linhas de uma vez formam um Tetris.</p>
-      </article>
-     </div>
-    </section>
-   </main>
-   <footer class="w-full px-4 pb-8 text-center sm:px-7">
-    <p data-template-id="footer-copy" class="canva-text" style="color: rgb(120, 148, 177); font-weight: 400; font-style: normal; font-size: 13px;">Tetris 2026 • blocos, estratégia e reflexos em modo neon.</p>
-   </footer>
-  </div>
-  <script>
-    (() => {
-      const COLS = 10;
-      const ROWS = 20;
-      const BLOCK = 30;
-      const COLORS = ["#2ff7ff", "#326bff", "#ff9e36", "#fff14b", "#b95cff", "#ff3cac", "#b9ff4b"];
-      const SHAPES = [
-        [[1,1,1,1]],
-        [[1,0,0],[1,1,1]],
-        [[0,0,1],[1,1,1]],
-        [[1,1],[1,1]],
-        [[0,1,1],[1,1,0]],
-        [[0,1,0],[1,1,1]],
-        [[1,1,0],[0,1,1]]
-      ];
-
-      const boardCanvas = document.getElementById("board");
-      const ctx = boardCanvas.getContext("2d");
-      const nextCanvas = document.getElementById("next-piece");
-      const nextCtx = nextCanvas.getContext("2d");
-      const output = (id) => document.getElementById(id);
-
-      let board;
-      let current;
-      let next;
-      let score;
-      let lines;
-      let level;
-      let highScore;
-      let running = false;
-      let paused = false;
-      let lastTime = 0;
-      let dropCounter = 0;
-      let animationId;
-
-      function emptyBoard() {
-        return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
-      }
-
-      function randomPiece() {
-        const type = Math.floor(Math.random() * SHAPES.length);
-        return {
-          shape: SHAPES[type].map((row) => [...row]),
-          color: COLORS[type],
-          x: 0,
-          y: 0
-        };
-      }
-
-      function resetPiece(piece) {
-        piece.x = Math.floor((COLS - piece.shape[0].length) / 2);
-        piece.y = 0;
-        return piece;
-      }
-
-      function collides(piece, offsetX = 0, offsetY = 0, testShape = piece.shape) {
-        return testShape.some((row, y) => row.some((cell, x) => {
-          if (!cell) return false;
-          const nextX = piece.x + x + offsetX;
-          const nextY = piece.y + y + offsetY;
-          return nextX < 0 || nextX >= COLS || nextY >= ROWS || (nextY >= 0 && board[nextY][nextX]);
-        }));
-      }
-
-      function drawCell(context, x, y, color, size = BLOCK) {
-        const px = x * size;
-        const py = y * size;
-
-        context.fillStyle = color;
-        context.shadowColor = color;
-        context.shadowBlur = size * .35;
-        context.fillRect(px + 2, py + 2, size - 4, size - 4);
-        context.shadowBlur = 0;
-        context.fillStyle = "rgba(255,255,255,.28)";
-        context.fillRect(px + 4, py + 4, size - 8, 3);
-      }
-
-      function draw() {
-        ctx.clearRect(0, 0, boardCanvas.width, boardCanvas.height);
-        ctx.fillStyle = "#07111f";
-        ctx.fillRect(0, 0, boardCanvas.width, boardCanvas.height);
-
-        ctx.strokeStyle = "rgba(119,200,255,.11)";
-        ctx.lineWidth = 1;
-
-        for (let x = 0; x <= COLS; x++) {
-          ctx.beginPath();
-          ctx.moveTo(x * BLOCK, 0);
-          ctx.lineTo(x * BLOCK, ROWS * BLOCK);
-          ctx.stroke();
-        }
-
-        for (let y = 0; y <= ROWS; y++) {
-          ctx.beginPath();
-          ctx.moveTo(0, y * BLOCK);
-          ctx.lineTo(COLS * BLOCK, y * BLOCK);
-          ctx.stroke();
-        }
-
-        board.forEach((row, y) => row.forEach((cell, x) => {
-          if (cell) drawCell(ctx, x, y, cell);
-        }));
-
-        if (current) {
-          current.shape.forEach((row, y) => row.forEach((cell, x) => {
-            if (cell) drawCell(ctx, current.x + x, current.y + y, current.color);
-          }));
-        }
-      }
-
-      function drawNext() {
-        nextCtx.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
-        if (!next) return;
-
-        const size = 20;
-        const width = next.shape[0].length * size;
-        const height = next.shape.length * size;
-...
+</body>
+</html>

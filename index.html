@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuva de Bolinhas Coloridas</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #2a2a2a;
+            padding: 8px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .nav-btn {
+            background-color: #444; color: white; border: none; padding: 6px 12px;
+            border-radius: 5px; cursor: pointer; font-weight: bold;
+        }
+        .btn-login { background-color: #007bff; }
+        .btn-donate { background-color: #28a745; }
+        
+        .main-layout {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        #gameCanvasArea {
+            width: 300px;
+            height: 400px;
+            background-color: #050505;
+            border: 4px solid #444;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ball {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            top: -50px;
+            transition: top 3s linear;
+        }
+        .ball:active { transform: scale(0.85); }
+        .combo-box { color: #ffeb3b; font-weight: bold; height: 18px; margin: 5px; text-align: center;}
+        .side-panel {
+            display: flex; flex-direction: column; background-color: #2a2a2a;
+            padding: 15px; border-radius: 8px; gap: 10px;
+        }
+        .control-btn {
+            color: white; border: none; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: bold;
+        }
+        .btn-start { background-color: #00ff6c; color: #000; }
+        .btn-restart { background-color: #ff9800; }
+        .btn-pause { background-color: #9c27b0; }
+        
+        .screen-overlay {
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.85); display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 5; gap: 15px;
+            font-size: 20px; font-weight: bold; text-align: center; padding: 10px;
+        }
+        .overlay-btn {
+            background-color: #00ff6c; color: black; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <button class="nav-btn btn-login" onclick="alert('Login simulado!')">Login</button>
+    <button class="nav-btn btn-donate" onclick="alert('Chave PIX 34991135148 luciana logarezzi v s!')">Donativos ❤️</button>
+</div>
+
+<audio controls>
+    <source src="https://anytourl.com/s/87786485920960551/mpeg" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
+
+<div class="main-layout">
+    <div>
+        <h2 style="text-align:center; margin:5px;">Pontos: <span id="score">0</span>/1000 | Tempo: <span id="timer">02:00</span></h2>
+        <div class="combo-box" id="comboStatus">Clique em Começar!</div>
+        
+        <div id="gameCanvasArea">
+            <div id="startScreen" class="screen-overlay">
+                <span>Chuva de Bolinhas</span>
+                <span style="font-size: 14px; color: #aaa; font-weight: normal;">Faça 1.000 pontos antes do tempo acabar!</span>
+                <button class="overlay-btn" onclick="startGame()">▶️ COMEÇAR</button>
+            </div>
+            <div id="pauseScreen" class="screen-overlay" style="display: none;">
+                <span>JOGO PAUSADO</span>
+            </div>
+            <div id="gameOverScreen" class="screen-overlay" style="display: none; color: #ff3333;">
+                <span id="endMessage">GAME OVER 💀</span>
+                <span id="endSubMessage" style="font-size: 14px; color: white; font-weight: normal;">Você não atingiu os 1.000 pontos!</span>
+                <button class="overlay-btn" style="background-color: #ff9800;" onclick="restartGame()">🔄 REINICIAR</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="side-panel">
+        <button class="control-btn btn-start" id="sideStartBtn" onclick="startGame()">▶️ Começar</button>
+        <button class="control-btn btn-restart" onclick="restartGame()">🔄 Reiniciar</button>
+        <button class="control-btn btn-pause" id="pauseBtn" onclick="togglePause()" style="display:none;">⏸️ Pausar</button>
+    </div>
+</div>
+
+<script>
+const gameArea = document.getElementById("gameCanvasArea");
+const scoreElement = document.getElementById("score");
+const timerElement = document.getElementById("timer");
+const comboStatus = document.getElementById("comboStatus");
+
+const COLORS = ["#FF3333", "#33FF33", "#3333FF", "#FFFF33", "#FF33FF"];
+const COLOR_NAMES = { "#FF3333": "Vermelho", "#33FF33": "Verde", "#3333FF": "Azul", "#FFFF33": "Amarelo", "#FF33FF": "Roxo" };
+
+let score = 0;
+let timeLeft = 120; // 2 minutos em segundos
+let clickedColors = [];
+let isPlaying = false;
+let isPaused = false;
+let spawnInterval = null;
+let countdownInterval = null;
+
+function formatTime(seconds) {
+    let mins = Math.floor(seconds / 60);
+    let secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+}
+
+function startGame() {
+    isPlaying = true;
+    isPaused = false;
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("gameOverScreen").style.display = "none";
+    document.getElementById("pauseBtn").style.display = "block";
+    document.getElementById("sideStartBtn").style.display = "none";
+    comboStatus.innerText = "Combine 3 da mesma cor!";
+    
+    if(spawnInterval) clearInterval(spawnInterval);
+    if(countdownInterval) clearInterval(countdownInterval);
+    
+    spawnInterval = setInterval(createBall, 600); // Cai um pouco mais rápido para dar tempo de pontuar
+    countdownInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    if (isPaused || !isPlaying) return;
+    
+    timeLeft--;
+    timerElement.innerText = formatTime(timeLeft);
+    
+    if (timeLeft <= 0) {
+        if (score >= 1000) {
+            triggerEndGame(true); // Vitória!
+        } else {
+            triggerEndGame(false); // Game Over!
+        }
+    }
+}
+
+function createBall() {
+    if (!isPlaying || isPaused) return;
+
+    const ball = document.createElement("div");
+    ball.classList.add("ball");
+    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    ball.style.backgroundColor = color;
+    ball.style.left = Math.random() * 260 + "px";
+
+    ball.onclick = function(e) {
+        e.stopPropagation();
+        if (!isPlaying || isPaused) return;
+        ball.remove();
+        processCombo(color);
+    };
+
+    gameArea.appendChild(ball);
+
+    setTimeout(() => {
+        if (!isPaused && isPlaying) {
+            ball.style.top = "420px";
+        }
+    }, 50);
+
+    // Remove a bolinha ao tocar o chão com segurança
+    setTimeout(() => {
+        if (ball.parentNode && isPlaying) {
+            ball.remove();
+        }
+    }, 3050);
+}
+
+function processCombo(color) {
+    if (clickedColors.length === 0 || clickedColors[clickedColors.length - 1] === color) {
+        clickedColors.push(color);
+    } else {
+        clickedColors = [color];
+    }
+
+    let faltam = 3 - clickedColors.length;
+    if (faltam > 0) {
+        comboStatus.innerText = `Combo ${COLOR_NAMES[color]}: Falta(m) ${faltam}!`;
+    } else {
+        score += 30;
+        scoreElement.innerText = score;
+        comboStatus.innerText = `Estourou! +30 Pontos!`;
+        clickedColors = [];
+        
+        // Se bater os 1.000 pontos antes do tempo acabar, já ganha direto!
+        if (score >= 1000) {
+            triggerEndGame(true);
+        }
+    }
+}
+
+function togglePause() {
+    isPaused = !isPaused;
+    document.getElementById("pauseScreen").style.display = isPaused ? "flex" : "none";
+    document.getElementById("pauseBtn").innerText = isPaused ? "▶️ Continuar" : "⏸️ Pausar";
+    
+    const activeBalls = document.querySelectorAll('.ball');
+    activeBalls.forEach(b => {
+        if(isPaused) {
+            let currentTop = window.getComputedStyle(b).top;
+            b.style.top = currentTop;
+        } else {
+            b.style.top = "420px";
+        }
+    });
+}
+
+function triggerEndGame(victory) {
+    isPlaying = false;
+    clearInterval(spawnInterval);
+    clearInterval(countdownInterval);
+    
+    const overlay = document.getElementById("gameOverScreen");
+    const msg = document.getElementById("endMessage");
+    const subMsg = document.getElementById("endSubMessage");
+    
+    if (victory) {
+        msg.innerText = "VITÓRIA! 🎉";
+        msg.style.color = "#00ff6c";
+        subMsg.innerText = `Parabéns! Você alcançou ${score} pontos!`;
+    } else {
+        msg.innerText = "GAME OVER 💀";
+        msg.style.color = "#ff3333";
+        subMsg.innerText = "O tempo acabou e você não atingiu 1.000 pontos.";
+    }
+    
+    overlay.style.display = "flex";
+    document.getElementById("pauseBtn").style.display = "none";
+    document.getElementById("sideStartBtn").style.display = "block";
+    document.querySelectorAll('.ball').forEach(b => b.remove());
+}
+
+function restartGame() {
+    score = 0;
+    timeLeft = 120;
+    clickedColors = [];
+    scoreElement.innerText = "0";
+    timerElement.innerText = "02:00";
+    document.querySelectorAll('.ball').forEach(b => b.remove());
+    document.getElementById("pauseScreen").style.display = "none";
+    startGame();
+}
+</script>
+
+</body>
+</html>

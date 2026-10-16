@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title> chuva Bolinhas Coloridas</title>
+    <title>Chuva de Bolinhas Coloridas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,10 +12,13 @@
     <button class="nav-btn btn-donate" onclick="alert('Chave PIX 34991135148 luciana logarezzi v s!')">Donativos ❤️</button>
 </div>
 
-<audio controls>
+<audio id="audioPlayer" controls>
     <source src="https://anytourl.com/s/87786485920960551/mpeg" type="audio/mpeg">
     Seu navegador não suporta o elemento de áudio.
 </audio>
+<p id="audioError" style="display:none; color:#ff9999; text-align:center;">
+    Não foi possível reproduzir o áudio. <a href="https://anytourl.com/s/87786485920960551/mpeg" target="_blank" rel="noopener noreferrer" style="color:#9cf;">Tente abrir o link diretamente</a>.
+</p>
 
 <div class="main-layout">
     <div>
@@ -24,7 +27,7 @@
         
         <div id="gameCanvasArea">
             <div id="startScreen" class="screen-overlay">
-                <span> bolinhas Coloridas</span>
+                <span>Chuva de Bolinhas</span>
                 <span style="font-size: 14px; color: #aaa; font-weight: normal;">Faça 1.000 pontos antes do tempo acabar!</span>
                 <button class="overlay-btn" onclick="startGame()">▶️ COMEÇAR</button>
             </div>
@@ -32,7 +35,7 @@
                 <span>JOGO PAUSADO</span>
             </div>
             <div id="gameOverScreen" class="screen-overlay" style="display: none; color: #ff3333;">
-                <span id="endMessage">GAME OVER </span>
+                <span id="endMessage">GAME OVER 💀</span>
                 <span id="endSubMessage" style="font-size: 14px; color: white; font-weight: normal;">Você não atingiu os 1.000 pontos!</span>
                 <button class="overlay-btn" style="background-color: #ff9800;" onclick="restartGame()">🔄 REINICIAR</button>
             </div>
@@ -51,6 +54,12 @@ const gameArea = document.getElementById("gameCanvasArea");
 const scoreElement = document.getElementById("score");
 const timerElement = document.getElementById("timer");
 const comboStatus = document.getElementById("comboStatus");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioError = document.getElementById("audioError");
+
+audioPlayer.addEventListener("error", () => {
+    audioError.style.display = "block";
+});
 
 const COLORS = ["#FF3333", "#33FF33", "#3333FF", "#FFFF33", "#FF33FF"];
 const COLOR_NAMES = { "#FF3333": "Vermelho", "#33FF33": "Verde", "#3333FF": "Azul", "#FFFF33": "Amarelo", "#FF33FF": "Roxo" };
@@ -174,7 +183,7 @@ function triggerEndGame(victory) {
         msg.style.color = "#00ff6c";
         subMsg.innerText = `Parabéns! Você alcançou ${score} pontos!`;
     } else {
-        msg.innerText = "GAME OVER ";
+        msg.innerText = "GAME OVER 💀";
         msg.style.color = "#ff3333";
         subMsg.innerText = "O tempo acabou e você não atingiu 1.000 pontos.";
     }

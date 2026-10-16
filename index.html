@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title> Jogo de Bolinhas Coloridas</title>
+    <title> chuva Bolinhas Coloridas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
         
         <div id="gameCanvasArea">
             <div id="startScreen" class="screen-overlay">
-                <span>Chuva de Bolinhas</span>
+                <span> bolinhas Coloridas</span>
                 <span style="font-size: 14px; color: #aaa; font-weight: normal;">Faça 1.000 pontos antes do tempo acabar!</span>
                 <button class="overlay-btn" onclick="startGame()">▶️ COMEÇAR</button>
             </div>
@@ -32,7 +32,7 @@
                 <span>JOGO PAUSADO</span>
             </div>
             <div id="gameOverScreen" class="screen-overlay" style="display: none; color: #ff3333;">
-                <span id="endMessage">GAME OVER 💀</span>
+                <span id="endMessage">GAME OVER </span>
                 <span id="endSubMessage" style="font-size: 14px; color: white; font-weight: normal;">Você não atingiu os 1.000 pontos!</span>
                 <button class="overlay-btn" style="background-color: #ff9800;" onclick="restartGame()">🔄 REINICIAR</button>
             </div>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="side-panel">
-        <button class="control-btn btn-start" id="sideStartBtn" onclick="startGame()">▶️ Começar</button>
+        <button class="control-btn btn-start" id="sideStartBtn" onclick="restartGame()">▶️ Começar</button>
         <button class="control-btn btn-restart" onclick="restartGame()">🔄 Reiniciar</button>
         <button class="control-btn btn-pause" id="pauseBtn" onclick="togglePause()" style="display:none;">⏸️ Pausar</button>
     </div>
@@ -81,7 +81,9 @@ function startGame() {
     if(spawnInterval) clearInterval(spawnInterval);
     if(countdownInterval) clearInterval(countdownInterval);
     
-    spawnInterval = setInterval(createBall, 600); // Cai um pouco mais rápido para dar tempo de pontuar
+    gameArea.classList.remove("paused");
+    document.getElementById("pauseBtn").innerText = "⏸️ Pausar";
+    spawnInterval = setInterval(createBall, 600);
     countdownInterval = setInterval(updateTimer, 1000);
 }
 
@@ -107,7 +109,10 @@ function createBall() {
     ball.classList.add("ball");
     const color = COLORS[Math.floor(Math.random() * COLORS.length)];
     ball.style.backgroundColor = color;
-    ball.style.left = Math.random() * 260 + "px";
+
+    gameArea.appendChild(ball);
+    const maxLeft = Math.max(0, gameArea.clientWidth - ball.offsetWidth);
+    ball.style.left = Math.random() * maxLeft + "px";
 
     ball.onclick = function(e) {
         e.stopPropagation();
@@ -115,44 +120,33 @@ function createBall() {
         ball.remove();
         processCombo(color);
     };
-
-    gameArea.appendChild(ball);
-
-    setTimeout(() => {
-        if (!isPaused && isPlaying) {
-            ball.style.top = "420px";
-        }
-    }, 50);
-
-    // Remove a bolinha ao tocar o chão com segurança
-    setTimeout(() => {
-        if (ball.parentNode && isPlaying) {
-            ball.remove();
-        }
-    }, 3050);
+    ball.addEventListener("animationend", () => ball.remove(), { once: true });
 }
 
 function processCombo(color) {
-    if (clickedColors.length === 0 || clickedColors[clickedColors.length - 1] === color) {
-        clickedColors.push(color);
-    } else {
-        clickedColors = [color];
-    }
+    clickedColors.push(color);
+    const matchingCount = clickedColors.filter(clickedColor => clickedColor === color).length;
 
-    let faltam = 3 - clickedColors.length;
-    if (faltam > 0) {
-        comboStatus.innerText = `Combo ${COLOR_NAMES[color]}: Falta(m) ${faltam}!`;
-    } else {
+    if (matchingCount >= 3) {
+        let removed = 0;
+        clickedColors = clickedColors.filter(clickedColor => {
+            if (clickedColor === color && removed < 3) {
+                removed++;
+                return false;
+            }
+            return true;
+        });
         score += 30;
         scoreElement.innerText = score;
-        comboStatus.innerText = `Estourou! +30 Pontos!`;
-        clickedColors = [];
-        
-        // Se bater os 1.000 pontos antes do tempo acabar, já ganha direto!
+        comboStatus.innerText = `Estourou ${COLOR_NAMES[color]}! +30 pontos!`;
+
         if (score >= 1000) {
             triggerEndGame(true);
         }
+        return;
     }
+
+    comboStatus.innerText = `Combo ${COLOR_NAMES[color]}: ${matchingCount}/3`;
 }
 
 function togglePause() {
@@ -160,19 +154,14 @@ function togglePause() {
     document.getElementById("pauseScreen").style.display = isPaused ? "flex" : "none";
     document.getElementById("pauseBtn").innerText = isPaused ? "▶️ Continuar" : "⏸️ Pausar";
     
-    const activeBalls = document.querySelectorAll('.ball');
-    activeBalls.forEach(b => {
-        if(isPaused) {
-            let currentTop = window.getComputedStyle(b).top;
-            b.style.top = currentTop;
-        } else {
-            b.style.top = "420px";
-        }
-    });
+    gameArea.classList.toggle("paused", isPaused);
 }
 
 function triggerEndGame(victory) {
+    if (!isPlaying) return;
     isPlaying = false;
+    isPaused = false;
+    gameArea.classList.remove("paused");
     clearInterval(spawnInterval);
     clearInterval(countdownInterval);
     
@@ -185,7 +174,7 @@ function triggerEndGame(victory) {
         msg.style.color = "#00ff6c";
         subMsg.innerText = `Parabéns! Você alcançou ${score} pontos!`;
     } else {
-        msg.innerText = "GAME OVER 💀";
+        msg.innerText = "GAME OVER ";
         msg.style.color = "#ff3333";
         subMsg.innerText = "O tempo acabou e você não atingiu 1.000 pontos.";
     }
@@ -204,6 +193,8 @@ function restartGame() {
     timerElement.innerText = "02:00";
     document.querySelectorAll('.ball').forEach(b => b.remove());
     document.getElementById("pauseScreen").style.display = "none";
+    document.getElementById("gameOverScreen").style.display = "none";
+    document.getElementById("pauseBtn").innerText = "⏸️ Pausar";
     startGame();
 }
 </script>

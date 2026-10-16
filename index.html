@@ -4,7 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chuva de Bolinhas Coloridas</title>
-    <link rel="stylesheet" href="./styles.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #2a2a2a;
+            padding: 8px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .nav-btn {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-login { background-color: #007bff; }
+        .btn-donate { background-color: #28a745; }
+        .main-layout {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        #gameCanvasArea {
+            width: 300px;
+            height: 400px;
+            background-color: #050505;
+            border: 4px solid #444;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .ball {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            top: -50px;
+            animation: fall 3s linear forwards;
+        }
+        #gameCanvasArea.paused .ball { animation-play-state: paused; }
+        @keyframes fall { to { top: 400px; } }
+        .ball:active { transform: scale(0.85); }
+        .combo-box {
+            color: #ffeb3b;
+            font-weight: bold;
+            height: 18px;
+            margin: 5px;
+            text-align: center;
+        }
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            gap: 10px;
+        }
+        .control-btn {
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-start { background-color: #00ff6c; color: #000; }
+        .btn-restart { background-color: #ff9800; }
+        .btn-pause { background-color: #9c27b0; }
+        .screen-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            gap: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+        .overlay-btn {
+            background-color: #00ff6c;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        @media (max-width: 520px) {
+            .main-layout { flex-direction: column; margin: 10px 0; }
+            .side-panel {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            h2 { font-size: 17px; }
+        }
+    </style>
 </head>
 <body>
 
